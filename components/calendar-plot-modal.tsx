@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect, ReactNode } from "react";
+import { ReactNode } from "react";
 import dayjs from "dayjs";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,6 +9,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type DayData = {
   date: dayjs.Dayjs;
@@ -73,7 +79,18 @@ const CalendarGrid = ({ data }: { data: DayData[] }) => {
         const dayData = data[dayIndex];
         return (
           <div key={i} className="flex items-center justify-center h-[50px]">
-            {dayData && <CirclePlot value={dayData.value} />}
+            {dayData && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <CirclePlot value={dayData.value} />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{dayData.date.format("DD.MM.YYYY")}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
           </div>
         );
       })}

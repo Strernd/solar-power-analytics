@@ -28,6 +28,7 @@ import { MonthData, processRawData } from "./monthDataFromUpload";
 import _ from "lodash";
 import { AnalyticsCharts } from "./analytics-charts";
 import { CalendarPlotModal } from "./calendar-plot-modal";
+import { toast } from "sonner";
 
 export function DashboardComponent() {
   const [mappedData, setMappedData] = useState<MappedDataItem[]>([]);
@@ -84,6 +85,8 @@ export function DashboardComponent() {
       const newData = [...mappedData, ...mapped];
       setMappedData(_.uniqBy(newData, (item) => item.timestamp.toString()));
       setUploadStatus("CSV file successfully parsed");
+      toast("CSV file successfully imported");
+      setIsOpen(false);
     });
   };
 
