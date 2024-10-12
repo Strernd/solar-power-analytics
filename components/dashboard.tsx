@@ -32,7 +32,7 @@ import { toast } from "sonner";
 import exampleData from "./example.json";
 import dayjs from "dayjs";
 
-const parseDemoData = (data: any) =>
+const parseDemoData = (data: (typeof exampleData)[number]) =>
   ({
     ...data,
     timestamp: dayjs(data.timestamp),
