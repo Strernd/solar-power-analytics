@@ -29,6 +29,14 @@ import _ from "lodash";
 import { AnalyticsCharts } from "./analytics-charts";
 import { CalendarPlotModal } from "./calendar-plot-modal";
 import { toast } from "sonner";
+import exampleData from "./example.json";
+import dayjs from "dayjs";
+
+const parseDemoData = (data: any) =>
+  ({
+    ...data,
+    timestamp: dayjs(data.timestamp),
+  } as MappedDataItem);
 
 export function DashboardComponent() {
   const [mappedData, setMappedData] = useState<MappedDataItem[]>([]);
@@ -40,6 +48,8 @@ export function DashboardComponent() {
   const [gridCostPerMonth, setGridCostPerMonth] = useState<{
     [key: string]: number;
   }>({});
+
+  console.log(JSON.stringify(mappedData, null, 2));
 
   const monthData = processRawData(
     mappedData,
@@ -153,6 +163,15 @@ export function DashboardComponent() {
       <h1 className="text-2xl font-bold mb-4">SolarEdge Analytics</h1>
 
       <div className="flex justify-end space-x-2 mb-4">
+        <Button
+          variant="ghost"
+          onClick={() => {
+            setMappedData(exampleData.map(parseDemoData));
+            toast("Demo data loaded");
+          }}
+        >
+          Use Demo Data
+        </Button>
         <Dialog>
           <DialogTrigger asChild>
             <Button variant="outline">Global Settings</Button>
