@@ -272,9 +272,11 @@ export function DashboardComponent() {
                           value: Math.round(x.autarky * 100),
                         }))}
                     >
-                      <TableCell className="flex gap-2 cursor-pointer">
-                        <ExternalLink className="h-4 w-4" />
-                        {Math.round(row.averageAutarky * 100)}%
+                      <TableCell>
+                        <Button variant="outline" className="flex gap-2">
+                          <ExternalLink className="h-4 w-4" />
+                          {Math.round(row.averageAutarky * 100)}%
+                        </Button>
                       </TableCell>
                     </CalendarPlotModal>
                     <TableCell>
