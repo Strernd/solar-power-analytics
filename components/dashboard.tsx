@@ -31,6 +31,7 @@ import { CalendarPlotModal } from "./calendar-plot-modal";
 import { toast } from "sonner";
 import exampleData from "./example.json";
 import dayjs from "dayjs";
+import { ExternalLink } from "lucide-react";
 
 const parseDemoData = (data: (typeof exampleData)[number]) =>
   ({
@@ -271,7 +272,8 @@ export function DashboardComponent() {
                           value: Math.round(x.autarky * 100),
                         }))}
                     >
-                      <TableCell>
+                      <TableCell className="flex gap-2 cursor-pointer">
+                        <ExternalLink className="h-4 w-4" />
                         {Math.round(row.averageAutarky * 100)}%
                       </TableCell>
                     </CalendarPlotModal>
